@@ -22,7 +22,7 @@ nav .logo { font-family: var(--mono); font-weight: 700; font-size: 14px; color: 
 nav .links { display: flex; gap: 32px; }
 nav .links a { color: var(--muted); font-size: 13px; font-family: var(--mono); text-transform: uppercase; letter-spacing: 1.5px; }
 nav .links a:hover { color: var(--accent); }
-.hero { max-width: 1060px; margin: 0 auto; padding: 160px 32px 60px; position: relative; }
+.hero { max-width: 1060px; margin: 0 auto; padding: 160px 32px 60px; }
 .hero .eyebrow { font-family: var(--mono); font-size: 12px; color: var(--accent); text-transform: uppercase; letter-spacing: 3px; margin-bottom: 24px; display: flex; align-items: center; gap: 12px; }
 .hero .eyebrow::before { content: ""; width: 40px; height: 1px; background: var(--accent); }
 .hero h1 { font-family: var(--heading); font-size: clamp(40px, 7vw, 64px); font-weight: 700; line-height: 1.05; letter-spacing: -2px; margin-bottom: 28px; }
@@ -78,6 +78,16 @@ section { max-width: 1060px; margin: 0 auto; padding: 80px 32px; }
 .game-link { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-family: var(--mono); font-weight: 700; color: var(--accent2); text-transform: uppercase; letter-spacing: 1px; transition: color 0.2s; }
 .game-link:hover { color: var(--accent); }
 .game-link::after { content: "→"; }
+.bottom-row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
+.edu-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 28px; }
+.edu-card .edu-eyebrow { font-family: var(--mono); font-size: 10px; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 14px; }
+.edu-card .degree { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+.edu-card .school { font-size: 14px; color: var(--accent2); margin-bottom: 4px; }
+.edu-card .year { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+.resume-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 28px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+.resume-card p { font-size: 13px; color: var(--muted); margin-bottom: 16px; }
+.resume-link { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-family: var(--mono); font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 1px; padding: 10px 24px; border: 1px solid var(--accent); border-radius: 6px; transition: all 0.2s; }
+.resume-link:hover { background: var(--accent); color: #0c0b0e; }
 .contact-block { background: var(--surface); border: 1px solid var(--border); padding: 48px; text-align: center; border-radius: 4px; }
 .contact-block h2 { font-family: var(--heading); font-size: 28px; font-weight: 700; margin-bottom: 12px; }
 .contact-block p { color: var(--muted); margin-bottom: 28px; font-size: 15px; font-weight: 300; }
@@ -85,7 +95,7 @@ section { max-width: 1060px; margin: 0 auto; padding: 80px 32px; }
 .contact-row a { padding: 12px 24px; font-size: 12px; font-family: var(--mono); font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; background: var(--surface2); border: 1px solid var(--border); color: var(--text); border-radius: 4px; transition: all 0.2s; }
 .contact-row a:hover { border-color: var(--accent); color: var(--accent); }
 footer { max-width: 1060px; margin: 0 auto; padding: 40px 32px; text-align: center; font-family: var(--mono); font-size: 11px; color: var(--dim); border-top: 1px solid var(--border); letter-spacing: 1px; }
-@media (max-width: 768px) { .skills-row { grid-template-columns: 1fr; } .game-card.featured { grid-template-columns: 1fr; } .game-card.featured .game-thumb { border-right: none; border-bottom: 1px solid var(--border); min-height: 180px; } nav .links { gap: 18px; } .hero { padding: 130px 20px 40px; } section { padding: 60px 20px; } }
+@media (max-width: 768px) { .skills-row { grid-template-columns: 1fr; } .game-card.featured { grid-template-columns: 1fr; } .game-card.featured .game-thumb { border-right: none; border-bottom: 1px solid var(--border); min-height: 180px; } nav .links { gap: 18px; } .hero { padding: 130px 20px 40px; } section { padding: 60px 20px; } .bottom-row { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
@@ -117,7 +127,7 @@ footer { max-width: 1060px; margin: 0 auto; padding: 40px 32px; text-align: cent
   <div class="sec-title">What I work with</div>
   <div class="skills-row">
     <div class="skill-item"><h3>Unity</h3><p>5+ years experience. Editor tools, animation, prefabs, profiling, multi-platform builds, and production deployment.</p></div>
-    <div class="skill-item"><h3>C#</h3><p>OOP architecture, modular codebases, editor scripting, async programming, database and server integration.</p></div>
+    <div class="skill-item"><h3>C# / WPF</h3><p>OOP architecture, modular codebases, WPF desktop applications, editor scripting, async programming, database and server integration.</p></div>
     <div class="skill-item"><h3>Virtual Reality</h3><p>Vive Focus 3, Android VR. Spatial UI, waypoint systems, interaction design, VR performance tuning.</p></div>
     <div class="skill-item"><h3>Android</h3><p>VR builds, build pipeline troubleshooting, custom side-loading tools, enterprise headset deployment.</p></div>
     <div class="skill-item"><h3>Shaders</h3><p>Lighting systems, material shaders, simulated camera render materials, fade effects, visual polish.</p></div>
@@ -134,14 +144,14 @@ footer { max-width: 1060px; margin: 0 auto; padding: 40px 32px; text-align: cent
     <p class="summary">Built production VR and desktop applications for Caterpillar's mining division. Shipped client-facing marketing tools and training simulators across Android VR, desktop, and mobile. Worked directly with customers to gather feedback and deliver to specification.</p>
     <ul class="exp-list">
       <li>Shipped 6+ VR and desktop applications for Caterpillar equipment visualization</li>
-      <li>Architected reusable VR codebase — rapid delivery across 6060, MD6310, 7495 product lines</li>
-      <li>Built Android Side Loader tool adopted company-wide for VR headset deployment</li>
-      <li>Implemented minimap and overhead tracking UI for autonomous mining trainer (MineStar)</li>
-      <li>Resolved critical Android build pipeline issues, unblocking the applications team</li>
+      <li>Architected reusable VR codebase — rapid delivery across 6060, MD6310, and 7495 product lines</li>
+      <li>Built Android Side Loader (WPF desktop app) adopted team-wide for deploying apps to VR headsets</li>
+      <li>Implemented minimap and overhead tracking UI for autonomous mining vehicle trainer (MineStar)</li>
+      <li>Resolved critical Android build pipeline issues, unblocking the entire applications team</li>
       <li>Direct client interaction — gathered feedback, iterated, shipped to specification</li>
     </ul>
     <div class="tag-row">
-      <span>Unity</span><span>C#</span><span>VR</span><span>Vive Focus 3</span>
+      <span>Unity</span><span>C#</span><span>WPF</span><span>VR</span><span>Vive Focus 3</span>
       <span>Android</span><span>Desktop</span><span>UI</span><span>Shaders</span><span>Git</span>
     </div>
   </div>
@@ -157,7 +167,7 @@ footer { max-width: 1060px; margin: 0 auto; padding: 40px 32px; text-align: cent
     <div class="pro-card"><div class="ptype">VR Marketing</div><h3>6060 VR</h3><p>Android VR marketing application for the Caterpillar 6060 hydraulic shovel, built for the Vive Focus 3. Customer-facing project with waypoint-based navigation built to client specifications.</p><div class="ptags"><span>Vive Focus 3</span><span>Android</span><span>Client-facing</span></div></div>
     <div class="pro-card"><div class="ptype">VR Marketing</div><h3>MD6310 VR</h3><p>Visualization app for the Caterpillar MD6310 mining drill. Extended the 6060 codebase with drill lift/lower interaction, simulated external camera render materials, and on-screen UI within the VR experience.</p><div class="ptags"><span>VR</span><span>3D Interaction</span><span>Shaders</span></div></div>
     <div class="pro-card"><div class="ptype">VR Marketing</div><h3>7495 Rope Shovel VR</h3><p>Marketing application for the Caterpillar 7495 rope shovel. Key feature was an auto-leveling system that mimicked real machine behavior in VR.</p><div class="ptags"><span>VR</span><span>Physics</span><span>Simulation</span></div></div>
-    <div class="pro-card"><div class="ptype">Internal Tool</div><h3>Android Side Loader</h3><p>Desktop utility that downloads Android SDK tools and enables any company computer to side-load VR applications to headsets via USB. Adopted company-wide at Caterpillar.</p><div class="ptags"><span>Android</span><span>Tooling</span><span>Automation</span></div></div>
+    <div class="pro-card"><div class="ptype">WPF Desktop Tool</div><h3>Android Side Loader</h3><p>WPF desktop application that downloads Android SDK tools and enables computers to side-load VR applications to headsets via USB. Adopted team-wide at Caterpillar.</p><div class="ptags"><span>WPF</span><span>C#</span><span>Android</span><span>Automation</span></div></div>
     <div class="pro-card"><div class="ptype">Desktop App</div><h3>320 Hex Life Extended</h3><p>Interactive desktop application for the Caterpillar 320 excavator. Allows users to swap part groups with Hex Life Extension packages. Serves as both a sales tool and an informational resource.</p><div class="ptags"><span>Desktop</span><span>UI/UX</span><span>3D Interaction</span></div></div>
   </div>
 
@@ -197,7 +207,7 @@ footer { max-width: 1060px; margin: 0 auto; padding: 40px 32px; text-align: cent
       </div>
     </div>
     <div class="game-card">
-      <div class="game-thumb" style="background: linear-gradient(135deg, #1c1b24, #24202e); display:flex; align-items:center; justify-content:center;"><span style="color: var(--dim); font-family: var(--mono); font-size: 12px; letter-spacing: 2px;">FPS · WEBGL</span></div>
+      <div class="game-thumb"><img src="https://img.itch.zone/aW1nLzI2NDgxNTgyLnBuZw==/315x250%23c/9A9AXL.png" alt="Warehouse FPS"></div>
       <div class="game-body">
         <div class="genre">FPS · Action</div>
         <h3>Warehouse FPS</h3>
@@ -208,9 +218,25 @@ footer { max-width: 1060px; margin: 0 auto; padding: 40px 32px; text-align: cent
   </div>
 </section>
 
+<!-- EDUCATION + RESUME below projects -->
+<section>
+  <div class="bottom-row">
+    <div class="edu-card">
+      <div class="edu-eyebrow">Education</div>
+      <div class="degree">Bachelor of Arts — Games and Interactive Media</div>
+      <div class="school">Michigan State University</div>
+      <div class="year">May 2021</div>
+    </div>
+    <div class="resume-card">
+      <p>Full work history, skills, and project details.</p>
+      <a href="Hoon_Lee_Resume.pdf" target="_blank" class="resume-link">View Resume</a>
+    </div>
+  </div>
+</section>
+
 <section id="contact">
   <div class="contact-block">
-    <h2>Let's build something</h2>
+    <h2>Currently available</h2>
     <p>Open to full-time, contract, or freelance Unity and XR development.</p>
     <div class="contact-row">
       <a href="mailto:hoon.lee.114@gmail.com">Email</a>

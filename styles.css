@@ -1,0 +1,196 @@
+html {
+    scroll-behavior: smooth;
+}
+
+header {
+    background-color: #e3e3e3;
+    padding: 30px;
+    text-align: center;
+    border-bottom: 3px solid #ccc;
+}
+
+section {
+    padding: 20px 0;
+}
+
+body {
+    background-color: #f4f4f4;
+    font-family: Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+
+footer {
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 40px;
+    background-color: #333;
+    color: #f4f4f4;
+    border-top: 3px solid #5D9CEC;
+}
+
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+h1, h2 {
+    font-family: 'Montserrat', sans-serif;
+    color: #111;
+}
+
+#projects ul {
+    list-style-type: none;
+    padding: 0;
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+#projects li {
+    background-color: #ffffff;
+    padding: 20px;
+    border: 1px solid #dddddd;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+    flex-basis: 350px;
+    flex-grow: 1;
+
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#projects li:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+#projects img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+}
+
+.button {
+    display: inline-block;
+    background-color: #5D9CEC;
+    color: #ffffff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #4A89DC;
+}
+
+.card-actions {
+    text-align: center;
+    margin-top: 20px;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 20px;
+
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    padding: 5px 10px;
+    transition: color 0.3s ease;
+}
+
+nav a:hover {
+    color: #5D9CEC;
+}
+
+
+@media (max-width: 768px) {
+    #projects ul {
+        flex-direction: column;
+    }
+
+    h1 {
+        font-size: 2.2rem;
+    }
+
+    header {
+        padding: 20px 15px;
+    }
+}
+
+/* Form Styles */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-family: inherit; /* Makes the form use our body's font */
+}
+
+/* We can reuse our .button style, but maybe add a full width for the submit button */
+form .button {
+    width: 100%;
+    font-size: 1.1rem;
+}
+
+.contact-container {
+    display: flex;
+    gap: 40px; /* Space between the two columns */
+    margin-top: 30px;
+}
+
+.form-column {
+    flex: 2; /* Make the form column take up 2/3 of the space */
+}
+
+.info-column {
+    flex: 1; /* Make the info column take up 1/3 of the space */
+    padding-top: 10px;
+}
+
+/* Style the info column text and links */
+.info-column h3 {
+    margin-top: 0;
+}
+
+.info-column p {
+    margin-bottom: 20px;
+}
+
+.info-column a {
+    color: #333;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.info-column a:hover {
+    color: #5D9CEC; /* Our brand blue color */
+}
+
+.info-column i {
+    margin-right: 10px; /* Space between the icon and the text */
+    color: #5D9CEC;
+}

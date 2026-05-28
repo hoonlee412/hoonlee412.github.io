@@ -1,40 +1,243 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Games</title>
-    <link rel="stylesheet" href="styles.css">
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hoon Lee — Unity & VR Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --bg: #0c0b0e; --surface: #14131a; --surface2: #1c1b24; --border: #2e2d38;
+  --text: #e4e2ed; --muted: #7d7a8c; --accent: #e8a838; --accent2: #38c8b0;
+  --dim: #4a4860; --heading: 'Sora', sans-serif; --mono: 'Space Mono', monospace; --body: 'Sora', sans-serif;
+}
+body { font-family: var(--body); background: var(--bg); color: var(--text); line-height: 1.6; -webkit-font-smoothing: antialiased; background-image: linear-gradient(rgba(232,168,56,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(232,168,56,0.03) 1px, transparent 1px); background-size: 60px 60px; }
+a { color: var(--accent2); text-decoration: none; transition: color 0.2s; }
+a:hover { color: var(--accent); }
+::selection { background: rgba(232,168,56,0.25); color: #fff; }
+nav { position: fixed; top: 0; width: 100%; z-index: 100; background: rgba(12,11,14,0.9); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); }
+nav .inner { max-width: 1060px; margin: 0 auto; padding: 16px 32px; display: flex; justify-content: space-between; align-items: center; }
+nav .logo { font-family: var(--mono); font-weight: 700; font-size: 14px; color: var(--accent); letter-spacing: 1px; }
+nav .links { display: flex; gap: 32px; }
+nav .links a { color: var(--muted); font-size: 13px; font-family: var(--mono); text-transform: uppercase; letter-spacing: 1.5px; }
+nav .links a:hover { color: var(--accent); }
+.hero { max-width: 1060px; margin: 0 auto; padding: 160px 32px 60px; position: relative; }
+.hero .eyebrow { font-family: var(--mono); font-size: 12px; color: var(--accent); text-transform: uppercase; letter-spacing: 3px; margin-bottom: 24px; display: flex; align-items: center; gap: 12px; }
+.hero .eyebrow::before { content: ""; width: 40px; height: 1px; background: var(--accent); }
+.hero h1 { font-family: var(--heading); font-size: clamp(40px, 7vw, 64px); font-weight: 700; line-height: 1.05; letter-spacing: -2px; margin-bottom: 28px; }
+.hero h1 em { font-style: normal; color: var(--accent); text-decoration: underline; text-decoration-color: rgba(232,168,56,0.3); text-underline-offset: 6px; text-decoration-thickness: 3px; }
+.hero .intro { font-size: 17px; color: var(--muted); max-width: 520px; line-height: 1.8; margin-bottom: 40px; font-weight: 300; }
+.hero .intro strong { color: var(--text); font-weight: 600; }
+.cta-row { display: flex; gap: 14px; flex-wrap: wrap; }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 28px; border-radius: 6px; font-size: 13px; font-weight: 600; font-family: var(--mono); border: none; cursor: pointer; transition: all 0.25s; text-transform: uppercase; letter-spacing: 1px; }
+.btn-primary { background: var(--accent); color: #0c0b0e; }
+.btn-primary:hover { background: #d49530; color: #0c0b0e; }
+.btn-ghost { background: transparent; color: var(--muted); border: 1px solid var(--border); }
+.btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+section { max-width: 1060px; margin: 0 auto; padding: 80px 32px; }
+.sec-eyebrow { font-family: var(--mono); font-size: 11px; color: var(--accent); text-transform: uppercase; letter-spacing: 3px; margin-bottom: 8px; }
+.sec-title { font-family: var(--heading); font-size: 32px; font-weight: 700; letter-spacing: -1px; margin-bottom: 48px; }
+.skills-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+.skill-item { background: var(--surface); padding: 24px; transition: background 0.2s; border: 1px solid transparent; }
+.skill-item:hover { background: var(--surface2); border-color: var(--border); }
+.skill-item h3 { font-family: var(--mono); font-size: 13px; color: var(--accent); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+.skill-item p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+.exp-block { border-left: 2px solid var(--accent); padding: 0 0 0 32px; margin-left: 8px; }
+.exp-block .role { font-family: var(--heading); font-size: 20px; font-weight: 700; margin-bottom: 4px; }
+.exp-block .meta { font-family: var(--mono); font-size: 12px; color: var(--accent); margin-bottom: 16px; letter-spacing: 0.5px; }
+.exp-block .summary { font-size: 15px; color: var(--muted); line-height: 1.8; margin-bottom: 20px; max-width: 640px; font-weight: 300; }
+.exp-list { list-style: none; padding: 0; margin-bottom: 20px; }
+.exp-list li { font-size: 13px; color: var(--muted); line-height: 1.8; padding: 3px 0 3px 20px; position: relative; }
+.exp-list li::before { content: "→"; position: absolute; left: 0; color: var(--accent2); font-family: var(--mono); font-size: 12px; }
+.tag-row { display: flex; flex-wrap: wrap; gap: 6px; }
+.tag-row span { font-size: 10px; font-family: var(--mono); padding: 5px 10px; background: var(--surface); border: 1px solid var(--border); border-radius: 3px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
+.pro-label-bar { font-family: var(--mono); font-size: 12px; color: var(--accent); border-bottom: 1px solid var(--border); padding-bottom: 10px; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 2px; }
+.pro-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2px; margin-bottom: 60px; }
+.pro-card { background: var(--surface); padding: 24px; border: 1px solid transparent; transition: all 0.2s; }
+.pro-card:hover { border-color: var(--accent); background: var(--surface2); }
+.pro-card .ptype { font-size: 10px; font-family: var(--mono); color: var(--accent); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; }
+.pro-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+.pro-card p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+.pro-card .ptags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 12px; }
+.pro-card .ptags span { font-size: 9px; font-family: var(--mono); padding: 3px 7px; background: rgba(232,168,56,0.06); border: 1px solid rgba(232,168,56,0.15); color: var(--accent); border-radius: 2px; }
+.personal-label-bar { font-family: var(--mono); font-size: 12px; color: var(--accent2); border-bottom: 1px solid var(--border); padding-bottom: 10px; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 2px; }
+.personal-sub { font-size: 12px; color: var(--muted); margin-bottom: 20px; font-family: var(--mono); }
+.game-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-bottom: 16px; }
+.game-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; transition: all 0.25s; }
+.game-card:hover { border-color: var(--accent2); transform: translateY(-4px); }
+.game-card.featured { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; }
+.game-thumb { height: 180px; background: var(--surface2); overflow: hidden; border-bottom: 1px solid var(--border); }
+.game-card.featured .game-thumb { height: auto; min-height: 220px; border-bottom: none; border-right: 1px solid var(--border); }
+.game-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.game-body { padding: 20px; display: flex; flex-direction: column; justify-content: center; }
+.game-body .genre { font-size: 10px; font-family: var(--mono); color: var(--accent2); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; }
+.game-body h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+.game-card:not(.featured) .game-body h3 { font-size: 15px; }
+.game-body p { font-size: 13px; color: var(--muted); line-height: 1.6; margin-bottom: 14px; }
+.game-link { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-family: var(--mono); font-weight: 700; color: var(--accent2); text-transform: uppercase; letter-spacing: 1px; transition: color 0.2s; }
+.game-link:hover { color: var(--accent); }
+.game-link::after { content: "→"; }
+.contact-block { background: var(--surface); border: 1px solid var(--border); padding: 48px; text-align: center; border-radius: 4px; }
+.contact-block h2 { font-family: var(--heading); font-size: 28px; font-weight: 700; margin-bottom: 12px; }
+.contact-block p { color: var(--muted); margin-bottom: 28px; font-size: 15px; font-weight: 300; }
+.contact-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.contact-row a { padding: 12px 24px; font-size: 12px; font-family: var(--mono); font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; background: var(--surface2); border: 1px solid var(--border); color: var(--text); border-radius: 4px; transition: all 0.2s; }
+.contact-row a:hover { border-color: var(--accent); color: var(--accent); }
+footer { max-width: 1060px; margin: 0 auto; padding: 40px 32px; text-align: center; font-family: var(--mono); font-size: 11px; color: var(--dim); border-top: 1px solid var(--border); letter-spacing: 1px; }
+@media (max-width: 768px) { .skills-row { grid-template-columns: 1fr; } .game-card.featured { grid-template-columns: 1fr; } .game-card.featured .game-thumb { border-right: none; border-bottom: 1px solid var(--border); min-height: 180px; } nav .links { gap: 18px; } .hero { padding: 130px 20px 40px; } section { padding: 60px 20px; } }
+</style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>My Games</h1>
-            <nav>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="projects.html">Projects</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </nav>
-        </header>
 
-        <main>
-            <section id="about">
-    <h2>About Me</h2>
-    <p>This is my homepage where I talk about my skills and background.</p>
-</section>
-<section id="projects-summary">
-    <h2>Project Highlights</h2>
-    <p>See my detailed projects page for more!</p>
-</section>
-        </main>
+<nav><div class="inner">
+  <div class="logo">HOON LEE</div>
+  <div class="links">
+    <a href="#skills">Skills</a>
+    <a href="#work">Work</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </div>
+</div></nav>
 
-        <footer>
-            <p>&copy; 2025 Hoon Lee. All Rights Reserved.</p>
-        </footer>
+<div class="hero">
+  <div class="eyebrow">Available for hire</div>
+  <h1>Unity & VR developer,<br><em>5+ years experience</em></h1>
+  <p class="intro">
+    <strong>3 years at Caterpillar</strong> building production VR and cross-platform applications for mining and heavy equipment. Comfortable shipping to VR headsets, mobile, desktop, and web.
+  </p>
+  <div class="cta-row">
+    <a href="mailto:hoon.lee.114@gmail.com" class="btn btn-primary">Get in touch</a>
+    <a href="#projects" class="btn btn-ghost">See projects</a>
+  </div>
+</div>
+
+<section id="skills">
+  <div class="sec-eyebrow">Toolkit</div>
+  <div class="sec-title">What I work with</div>
+  <div class="skills-row">
+    <div class="skill-item"><h3>Unity</h3><p>5+ years experience. Editor tools, animation, prefabs, profiling, multi-platform builds, and production deployment.</p></div>
+    <div class="skill-item"><h3>C#</h3><p>OOP architecture, modular codebases, editor scripting, async programming, database and server integration.</p></div>
+    <div class="skill-item"><h3>Virtual Reality</h3><p>Vive Focus 3, Android VR. Spatial UI, waypoint systems, interaction design, VR performance tuning.</p></div>
+    <div class="skill-item"><h3>Android</h3><p>VR builds, build pipeline troubleshooting, custom side-loading tools, enterprise headset deployment.</p></div>
+    <div class="skill-item"><h3>Shaders</h3><p>Lighting systems, material shaders, simulated camera render materials, fade effects, visual polish.</p></div>
+    <div class="skill-item"><h3>Cross-Platform</h3><p>VR, Desktop, iOS, Android, WebGL. Platform-specific optimization and deployment pipelines.</p></div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="sec-eyebrow">Experience</div>
+  <div class="sec-title">Where I've shipped</div>
+  <div class="exp-block">
+    <div class="role">Unity Developer — Applications Team</div>
+    <div class="meta">CAT Visual · Caterpillar Inc. · Remote · ~3 Years</div>
+    <p class="summary">Built production VR and desktop applications for Caterpillar's mining division. Shipped client-facing marketing tools and training simulators across Android VR, desktop, and mobile. Worked directly with customers to gather feedback and deliver to specification.</p>
+    <ul class="exp-list">
+      <li>Shipped 6+ VR and desktop applications for Caterpillar equipment visualization</li>
+      <li>Architected reusable VR codebase — rapid delivery across 6060, MD6310, 7495 product lines</li>
+      <li>Built Android Side Loader tool adopted company-wide for VR headset deployment</li>
+      <li>Implemented minimap and overhead tracking UI for autonomous mining trainer (MineStar)</li>
+      <li>Resolved critical Android build pipeline issues, unblocking the applications team</li>
+      <li>Direct client interaction — gathered feedback, iterated, shipped to specification</li>
+    </ul>
+    <div class="tag-row">
+      <span>Unity</span><span>C#</span><span>VR</span><span>Vive Focus 3</span>
+      <span>Android</span><span>Desktop</span><span>UI</span><span>Shaders</span><span>Git</span>
     </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="sec-eyebrow">Projects</div>
+  <div class="sec-title">What I've built</div>
+
+  <div class="pro-label-bar">Professional — Caterpillar (proprietary, not publicly playable)</div>
+  <div class="pro-grid">
+    <div class="pro-card"><div class="ptype">VR Training</div><h3>MineStar VR Trainer</h3><p>Virtual Reality autonomous mining vehicle trainer. Built UI systems and a minimap overhead view that tracks machines following predefined paths in real time.</p><div class="ptags"><span>Unity</span><span>VR</span><span>UI</span><span>Minimap</span></div></div>
+    <div class="pro-card"><div class="ptype">VR Marketing</div><h3>6060 VR</h3><p>Android VR marketing application for the Caterpillar 6060 hydraulic shovel, built for the Vive Focus 3. Customer-facing project with waypoint-based navigation built to client specifications.</p><div class="ptags"><span>Vive Focus 3</span><span>Android</span><span>Client-facing</span></div></div>
+    <div class="pro-card"><div class="ptype">VR Marketing</div><h3>MD6310 VR</h3><p>Visualization app for the Caterpillar MD6310 mining drill. Extended the 6060 codebase with drill lift/lower interaction, simulated external camera render materials, and on-screen UI within the VR experience.</p><div class="ptags"><span>VR</span><span>3D Interaction</span><span>Shaders</span></div></div>
+    <div class="pro-card"><div class="ptype">VR Marketing</div><h3>7495 Rope Shovel VR</h3><p>Marketing application for the Caterpillar 7495 rope shovel. Key feature was an auto-leveling system that mimicked real machine behavior in VR.</p><div class="ptags"><span>VR</span><span>Physics</span><span>Simulation</span></div></div>
+    <div class="pro-card"><div class="ptype">Internal Tool</div><h3>Android Side Loader</h3><p>Desktop utility that downloads Android SDK tools and enables any company computer to side-load VR applications to headsets via USB. Adopted company-wide at Caterpillar.</p><div class="ptags"><span>Android</span><span>Tooling</span><span>Automation</span></div></div>
+    <div class="pro-card"><div class="ptype">Desktop App</div><h3>320 Hex Life Extended</h3><p>Interactive desktop application for the Caterpillar 320 excavator. Allows users to swap part groups with Hex Life Extension packages. Serves as both a sales tool and an informational resource.</p><div class="ptags"><span>Desktop</span><span>UI/UX</span><span>3D Interaction</span></div></div>
+  </div>
+
+  <div class="personal-label-bar">Post-College — Personal</div>
+  <div class="personal-sub">Playable in browser</div>
+  <div class="game-grid" style="margin-bottom: 40px;">
+
+    <div class="game-card featured">
+      <div class="game-thumb" style="background: linear-gradient(135deg, #080a18 0%, #0d1530 50%, #081820 100%); display:flex; align-items:center; justify-content:center; flex-direction:column; gap:10px;">
+        <span style="color: #38c8b0; font-family: var(--mono); font-size: 22px; letter-spacing: 4px; font-weight:700;">|ψ⟩</span>
+        <span style="color: rgba(56,200,176,0.4); font-family: var(--mono); font-size: 10px; letter-spacing: 3px;">QUANTUM · UNITY · WEBGL</span>
+      </div>
+      <div class="game-body">
+        <div class="genre" style="color: #38c8b0;">Interactive Tool · Quantum Computing · WebGL</div>
+        <h3>Bloch Sphere Visualizer</h3>
+        <p>Real-time 3D Bloch sphere with correct quantum gate physics. Apply H, X, Y, Z, S, T and rotation gates and watch the state vector animate along the mathematically accurate rotation axis. Includes a guessing game mode. Built solo in Unity with UIToolkit.</p>
+        <a href="https://hoonlee412.github.io/QuantumLearning" target="_blank" class="game-link">Try it live</a>
+      </div>
+    </div>
+
+    <div class="game-card featured">
+      <div class="game-thumb"><img src="https://img.itch.zone/aW1hZ2UvMTMxNzE5NS83NjU5ODg1LnBuZw==/original/VLZC6c.png" alt="Fly Girls"></div>
+      <div class="game-body">
+        <div class="genre">2D · Shoot 'Em Up · Side Scroller</div>
+        <h3>Fly Girls</h3>
+        <p>Side-scrolling shoot-em-up with boss battles, teleport dodge mechanic, star collection for leveling, and health restoration system. Built solo in Unity.</p>
+        <a href="https://hoonlee119.itch.io/fly-girls" target="_blank" class="game-link">Play on itch.io</a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="personal-label-bar">College Projects</div>
+  <div class="personal-sub">Built during studies — Unity WebGL</div>
+  <div class="game-grid">
+    <div class="game-card">
+      <div class="game-thumb"><img src="https://img.itch.zone/aW1hZ2UvMTM4MjY2My84MTAwMjYwLnBuZw==/original/MjdB%2Ff.png" alt="Slender Escape"></div>
+      <div class="game-body">
+        <div class="genre">Horror · Survival · Maze</div>
+        <h3>Slender Escape</h3>
+        <p>First-person horror maze game. Navigate dark corridors, avoid the monster, and find the exit. Built in Unity.</p>
+        <a href="https://hoonlee119.itch.io/slender-escape" target="_blank" class="game-link">Play on itch.io</a>
+      </div>
+    </div>
+    <div class="game-card">
+      <div class="game-thumb"><img src="https://img.itch.zone/aW1hZ2UvMTM3OTkyNy84MTAwMjA3LnBuZw==/original/qgqDSd.png" alt="Deep Sky Shooter"></div>
+      <div class="game-body">
+        <div class="genre">3D · First-Person · Shooter</div>
+        <h3>Deep Sky Shooter</h3>
+        <p>3D first-person shooter with movement and shooting mechanics. Built in Unity, playable via WebGL.</p>
+        <a href="https://hoonlee119.itch.io/skyshooter" target="_blank" class="game-link">Play on itch.io</a>
+      </div>
+    </div>
+    <div class="game-card">
+      <div class="game-thumb" style="background: linear-gradient(135deg, #1c1b24, #24202e); display:flex; align-items:center; justify-content:center;"><span style="color: var(--dim); font-family: var(--mono); font-size: 12px; letter-spacing: 2px;">FPS · WEBGL</span></div>
+      <div class="game-body">
+        <div class="genre">FPS · Action</div>
+        <h3>Warehouse FPS</h3>
+        <p>First-person shooter set in a warehouse environment. Features weapon switching, reloading, and a gun upgrading system. Built in Unity.</p>
+        <a href="https://hoonlee119.itch.io/warehouse-fps" target="_blank" class="game-link">Play on itch.io</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="contact-block">
+    <h2>Let's build something</h2>
+    <p>Open to full-time, contract, or freelance Unity and XR development.</p>
+    <div class="contact-row">
+      <a href="mailto:hoon.lee.114@gmail.com">Email</a>
+      <a href="https://www.linkedin.com/in/hoon-lee-751115164/" target="_blank">LinkedIn</a>
+      <a href="https://github.com/hoonlee412" target="_blank">GitHub</a>
+      <a href="https://hoonlee119.itch.io" target="_blank">itch.io</a>
+      <a href="Hoon_Lee_Resume.pdf" target="_blank">Resume</a>
+    </div>
+  </div>
+</section>
+
+<footer>&copy; 2026 HOON LEE</footer>
+
 </body>
 </html>
